@@ -5,11 +5,13 @@ import React, { Component } from 'react';
 import {Panel, FormGroup, FormControl, Button} from 'react-bootstrap';
 import {isLogged} from '../Utils';
 import AuthModal from './AuthModal';
+import { connect } from 'react-redux'
 
 
 class StatusForm extends Component {
   render() {
-      if(!isLogged()){
+      const {user} = this.props;
+      if(!user || !user.token){
           return (<AuthModal/>);
       }
     return (
@@ -23,4 +25,12 @@ class StatusForm extends Component {
   }
 }
 
-export default StatusForm;
+
+function mapStateToProps(state, props) {
+    return {
+      user: state.auth.user,
+      requesting: state.auth.requesting
+    };
+}
+
+export default connect(mapStateToProps)(StatusForm);

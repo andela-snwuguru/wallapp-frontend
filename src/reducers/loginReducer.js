@@ -6,7 +6,7 @@ import {LOGIN_USER, RECEIVE_USER_DATA} from '../actions/LoginActions'
 
 let initialState = {
   requesting : false,
-  user : {}
+  user : JSON.parse(localStorage.getItem("tw_user"))
 };
 
 export function authentication(state = initialState, action) {

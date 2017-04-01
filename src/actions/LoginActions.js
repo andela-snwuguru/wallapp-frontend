@@ -2,8 +2,7 @@
  * Created by sundayguru on 01/04/2017.
  */
 
-import fetch from 'isomorphic-fetch';
-import {Config} from '../Utils';
+import {Config, post} from '../Utils';
 
 export const LOGIN_USER = "LOGIN_USER";
 export const RECEIVE_USER_DATA = "RECEIVE_USER_DATA";
@@ -25,8 +24,10 @@ export function receiveUserData(payload) {
 export function requestUserLogin(userData) {
     return dispatch => {
       dispatch(loginUser());
-      return fetch(Config.apiUrl+"login/", {method: 'post', body: userData}).then(function(response){
-               return response.json()
-            }).then(payload => dispatch(receiveUserData(payload)));
-      };
+      return post("login/", userData).then(payload => {
+          localStorage.setItem("tw_token", payload.token);
+          localStorage.setItem("tw_user", JSON.stringify(payload));
+          dispatch(receiveUserData(payload));
+      });
+    };
 }
