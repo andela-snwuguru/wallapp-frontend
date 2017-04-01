@@ -8,16 +8,44 @@
 }
 
 .App-header {
-  background-color: #222;
+  background: url("../public/images/thewall.png");
+  background-color: #0a1329;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
   height: 150px;
   padding: 20px;
   color: white;
+  margin-bottom: 20px;
 }
 
 .App-intro {
   font-size: large;
 }
 
+.main-container{
+  max-width: 70%;
+  margin:0 auto;
+}
+
+.no-radius {
+  border-radius: 0px;
+}
+
+.userContent{
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.38;
+  text-align: left;
+}
+
+.Loader{
+  min-height: 200px;
+}
+
+.grey {
+  color: #ccc;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
