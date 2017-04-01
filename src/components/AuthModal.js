@@ -50,7 +50,7 @@ class AuthModal extends Component {
                     <Button
                       bsStyle="primary"
                       bsSize="large"
-                      className="btn-block"
+                      className="btn-block no-radius"
                       onClick={this.openSignup}
                     >
                       Register
@@ -59,7 +59,7 @@ class AuthModal extends Component {
                 <Col xs={12} md={6}>
                     <Button
                       bsStyle="primary"
-                      className="btn-block"
+                      className="btn-block  no-radius"
                       bsSize="large"
                       onClick={this.openLogin}
                     >

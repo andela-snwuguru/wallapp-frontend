@@ -28,14 +28,19 @@
   margin:0 auto;
 }
 
+.no-radius {
+  border-radius: 0px;
+}
+
 .userContent{
   font-size: 14px;
   font-weight: normal;
   line-height: 1.38;
   text-align: left;
 }
-.navbar{
-  border-radius: 0px;
+
+.Loader{
+  min-height: 200px;
 }
 
 .grey {

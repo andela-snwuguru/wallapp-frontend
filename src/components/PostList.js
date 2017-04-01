@@ -4,16 +4,17 @@
 import React, { Component } from 'react';
 import {Row} from 'react-bootstrap';
 import Post from './Post';
+import Loader from 'react-loader-advanced';
 
 
 class PostList extends Component {
   render() {
     return (
-        <div>
+        <Loader show={false} message={'Loading...'}>
             <Post />
             <Post />
             <Post />
-        </div>
+        </Loader>
     );
   }
 }
