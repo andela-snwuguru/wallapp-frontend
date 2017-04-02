@@ -13,9 +13,11 @@ export function requestUserLogin(userData) {
     return dispatch => {
       dispatch(eventAction(LOGIN_USER));
       return post("login/", userData).then(payload => {
-          localStorage.setItem("tw_token", payload.token);
-          localStorage.setItem("tw_user", JSON.stringify(payload.user));
-          dispatch(eventAction(RECEIVE_USER_DATA, payload));
+            if (typeof localStorage !== "undefined") {
+                localStorage.setItem("tw_token", payload.token);
+                localStorage.setItem("tw_user", JSON.stringify(payload.user));
+            }
+          dispatch(eventAction(RECEIVE_USER_DATA, payload.user));
       });
     };
 }

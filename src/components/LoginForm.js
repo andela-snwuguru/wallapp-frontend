@@ -26,28 +26,28 @@ class LoginForm extends Component {
   render() {
     return (
         <Loader show={false} message={'Processing'}>
-            <Form horizontal onSubmit={this.submitHandler}>
-                <FormGroup controlId="formHorizontalEmail">
+            <Form horizontal onSubmit={this.submitHandler} id="login-form">
+                <FormGroup controlId="username">
                   <Col componentClass={ControlLabel} sm={2}>
                     Username
                   </Col>
                   <Col sm={10}>
-                    <FormControl type="text" placeholder="Username" required value={this.state.username} onChange={(e)=>{ this.setState({username:e.target.value})}}/>
+                    <FormControl type="text" id="username" placeholder="Username" required value={this.state.username} onChange={(e)=>{ this.setState({username:e.target.value})}}/>
                   </Col>
                 </FormGroup>
 
-                <FormGroup controlId="formHorizontalPassword">
+                <FormGroup controlId="password">
                   <Col componentClass={ControlLabel} sm={2}>
                     Password
                   </Col>
                   <Col sm={10}>
-                    <FormControl type="password" placeholder="Password" required value={this.state.password} onChange={(e)=>{ this.setState({password:e.target.value})}}/>
+                    <FormControl type="password" id="password" placeholder="Password" required value={this.state.password} onChange={(e)=>{ this.setState({password:e.target.value})}}/>
                   </Col>
                 </FormGroup>
 
                 <FormGroup>
                   <Col smOffset={2} sm={10}>
-                    <Button type="submit" className="pull-right">
+                    <Button type="submit" className="pull-right" id="login-submit">
                       Login
                     </Button>
                   </Col>

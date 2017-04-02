@@ -5,6 +5,7 @@ import fetch from 'isomorphic-fetch';
 
 
 export const Config = {
+    domain: "http://localhost:8000/",
     apiUrl: "http://localhost:8000/api/"
 };
 

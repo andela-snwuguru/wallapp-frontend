@@ -43,6 +43,7 @@ class AuthModal extends Component {
                               bsStyle="primary"
                               bsSize="large"
                               className="btn-block no-radius"
+                              id="register-button"
                               onClick={this.openSignup}
                             >
                               Register
@@ -53,6 +54,7 @@ class AuthModal extends Component {
                               bsStyle="primary"
                               className="btn-block  no-radius"
                               bsSize="large"
+                              id="login-button"
                               onClick={this.openLogin}
                             >
                               Login
