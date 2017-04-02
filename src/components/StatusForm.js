@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 class StatusForm extends Component {
   render() {
       const {user} = this.props;
-      if(!user || !user.token){
+      if(!isLogged()){
           return (<AuthModal/>);
       }
     return (

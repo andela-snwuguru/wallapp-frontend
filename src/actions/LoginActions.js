@@ -5,6 +5,7 @@
 import {Config, post} from '../Utils';
 
 export const LOGIN_USER = "LOGIN_USER";
+export const LOGOUT_USER = "LOGOUT_USER";
 export const RECEIVE_USER_DATA = "RECEIVE_USER_DATA";
 
 

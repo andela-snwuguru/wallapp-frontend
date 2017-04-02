@@ -9,7 +9,7 @@ export const Config = {
 };
 
 export function isLogged() {
-    return false;
+    return localStorage.getItem('tw_token');
 }
 
 export function getHeaders(withToken) {
@@ -37,4 +37,11 @@ export function get(path) {
          .then(function(response){
             return response.json();
          });
+}
+
+export function eventAction(event_type, payload) {
+    return {
+      type: event_type,
+        payload
+    }
 }
