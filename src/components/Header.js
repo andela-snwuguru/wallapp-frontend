@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import '../App.css';
 import {NavDropdown, MenuItem} from 'react-bootstrap';
 import {isLogged, eventAction} from '../Utils';
-import {LOGOUT_USER} from '../actions/LoginActions';
+import {LOGOUT_USER} from '../actions/AuthActions';
 import { connect } from 'react-redux'
 
 
@@ -19,7 +19,7 @@ class Header extends Component {
         if(!isLogged())
             return;
         return (
-            <NavDropdown eventKey="4" title={"Welcome " + this.props.user.user.username} id="nav-dropdown" className="pull-right account">
+            <NavDropdown eventKey="4" title={"Welcome " + this.props.user.username} id="nav-dropdown" className="pull-right account">
               <MenuItem eventKey="4.1">Settings</MenuItem>
               <MenuItem divider />
               <MenuItem eventKey="4.4" onClick={this.logout.bind(this)}>Logout</MenuItem>

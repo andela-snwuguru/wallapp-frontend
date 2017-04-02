@@ -2,11 +2,11 @@
  * Created by sundayguru on 01/04/2017.
  */
 
-import {LOGIN_USER, RECEIVE_USER_DATA, LOGOUT_USER} from '../actions/LoginActions'
+import {LOGIN_USER, RECEIVE_USER_DATA, LOGOUT_USER, USER_LOGGED_IN} from '../actions/AuthActions'
 
 let initialState = {
   requesting : false,
-  user : JSON.parse(localStorage.getItem("tw_user"))
+  user : {}
 };
 
 export function authentication(state = initialState, action) {
@@ -15,6 +15,7 @@ export function authentication(state = initialState, action) {
       return Object.assign({}, state, {requesting: true});
     case LOGOUT_USER:
       return Object.assign({}, state, {requesting: false, user:{}});
+    case USER_LOGGED_IN:
     case RECEIVE_USER_DATA:
       return Object.assign({}, state, {requesting: false, user: action.payload});
     default:

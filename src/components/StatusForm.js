@@ -5,10 +5,11 @@ import React, { Component } from 'react';
 import {Panel, FormGroup, FormControl, Button} from 'react-bootstrap';
 import {isLogged} from '../Utils';
 import AuthModal from './AuthModal';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 
 class StatusForm extends Component {
+
   render() {
       const {user} = this.props;
       if(!isLogged()){

@@ -4,7 +4,7 @@
 import React, { Component, PropTypes } from 'react';
 import {Form, Button, FormGroup, Col, FormControl, ControlLabel} from 'react-bootstrap';
 import Loader from 'react-loader-advanced';
-import {requestUserLogin} from '../actions/LoginActions';
+import {requestUserLogin} from '../actions/AuthActions';
 
 
 class LoginForm extends Component {
