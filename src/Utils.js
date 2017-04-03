@@ -19,9 +19,11 @@ export function getHeaders(withToken) {
         'Accept': 'application/json'
     };
     if(withToken){
-        return Object.assign({}, headers, {
-            "Authorization":"JWT " + localStorage.getItem("tw_token")
-        });
+        if(typeof localStorage !== "undefined"){
+            return Object.assign({}, headers, {
+                "Authorization":"JWT " + localStorage.getItem("tw_token")
+            });
+        }
     }
     return headers;
 }

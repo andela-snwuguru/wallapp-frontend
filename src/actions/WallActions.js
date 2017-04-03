@@ -14,7 +14,7 @@ export function postNewMessage(data) {
       dispatch(eventAction(POST_NEW_MESSAGE));
       return post("walls/", data, true).then(payload => {
             if (payload.id) {
-                return dispatch(eventAction(NEW_MESSAGE_POSTED));
+                return dispatch(eventAction(NEW_MESSAGE_POSTED, payload));
             }
           dispatch(eventAction(NEW_MESSAGE_FAILED));
       });
