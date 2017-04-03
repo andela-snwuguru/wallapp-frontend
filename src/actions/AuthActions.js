@@ -31,9 +31,9 @@ export function requestUserRegister(userData) {
       return post("register/", userData).then(payload => {
           if(payload.id){
               dispatch(eventAction(SIGNUP_USER_SUCCESS));
-              dispatch(requestUserLogin(userData));
+              return dispatch(requestUserLogin(userData));
           }
-          dispatch(eventAction(SIGNUP_USER_FAIL));
+          return dispatch(eventAction(SIGNUP_USER_FAIL));
       });
     };
 }

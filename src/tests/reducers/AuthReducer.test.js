@@ -42,4 +42,32 @@ describe('User authentications', () => {
       })
   });
 
+  it('requestUserRegister creates SIGNUP_USER_SUCCESS, RECEIVE_USER_DATA after success signup', () => {
+      const mock_response = {
+          "user":{
+              "id": 1, "username":"tester", "email":"test@test.com",
+              "is_active":true, "first_name":"tester",
+              "last_name":"tester"
+          }
+      };
+    nock(Config.domain)
+      .post('/api/register/')
+      .reply(200, mock_response.user);
+    nock(Config.domain)
+      .post('/api/login/')
+      .reply(200, mock_response);
+    const expectedActions = [
+      { type: actions.SIGNUP_USER,  payload: undefined },
+      { type: actions.SIGNUP_USER_SUCCESS,  payload: undefined },
+      { type: actions.LOGIN_USER,  payload: undefined },
+      { type: actions.RECEIVE_USER_DATA, payload: mock_response.user }
+    ];
+    const store = mockStore({ user: {}, requesting: false });
+
+    return store.dispatch(actions.requestUserRegister({"username":"tester", "password":"test", "email":"test@test.com"}))
+      .then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      })
+  });
+
 });
