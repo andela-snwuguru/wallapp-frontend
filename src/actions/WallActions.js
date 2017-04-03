@@ -12,7 +12,7 @@ export const NEW_MESSAGE_FAILED = "NEW_MESSAGE_FAILED";
 export function postNewMessage(data) {
     return dispatch => {
       dispatch(eventAction(POST_NEW_MESSAGE));
-      return post("walls/", data).then(payload => {
+      return post("walls/", data, true).then(payload => {
             if (payload.id) {
                 return dispatch(eventAction(NEW_MESSAGE_POSTED));
             }
