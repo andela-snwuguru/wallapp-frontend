@@ -7,13 +7,15 @@ import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import { authentication } from './reducers/AuthReducer';
+import { posts } from './reducers/WallReducer';
 import {eventAction} from './Utils';
 import {USER_LOGGED_IN} from './actions/AuthActions';
 
 
 function storeWrapper(state = {}, action) {
     return {
-      auth: authentication(state.auth, action)
+      auth: authentication(state.auth, action),
+      wall: posts(state.wall, action)
     }
 }
 
