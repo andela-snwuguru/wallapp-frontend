@@ -31,9 +31,30 @@ describe('Wall Posts', () => {
       { type: actions.POST_NEW_MESSAGE,  payload: undefined },
       { type: actions.NEW_MESSAGE_POSTED, payload: mock_response }
     ];
-    const store = mockStore({ user: {}, requesting: false });
+    const store = mockStore({ posts: {}, requesting: false });
 
     return store.dispatch(actions.postNewMessage({"message":"test"}))
+      .then(() => { 
+        expect(store.getActions()).toEqual(expectedActions);
+      })
+  });
+
+  it('getPosts creates RECEIVE_POSTS after successful post fetch', () => {
+      const mock_response = [{
+          "id": 1,
+          "message": "test"
+      }];
+    nock(Config.domain)
+      .get('/api/walls/')
+      .reply(200, mock_response);
+
+    const expectedActions = [
+      { type: actions.FETCH_POSTS,  payload: undefined },
+      { type: actions.RECEIVE_POSTS, payload: mock_response }
+    ];
+    const store = mockStore({ posts: {}, requesting_posts: false });
+
+    return store.dispatch(actions.getPosts())
       .then(() => { 
         expect(store.getActions()).toEqual(expectedActions);
       })
