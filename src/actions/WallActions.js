@@ -2,11 +2,13 @@
  * Created by sundayguru on 03/04/2017.
  */
 
-import {Config, post, eventAction} from '../Utils';
+import {Config, post, get, eventAction} from '../Utils';
 
 export const POST_NEW_MESSAGE = "POST_NEW_MESSAGE";
 export const NEW_MESSAGE_POSTED = "NEW_MESSAGE_POSTED";
 export const NEW_MESSAGE_FAILED = "NEW_MESSAGE_FAILED";
+export const FETCH_POSTS = "FETCH_POSTS";
+export const RECEIVE_POSTS = "RECEIVE_POSTS";
 
 
 export function postNewMessage(data) {
@@ -17,6 +19,16 @@ export function postNewMessage(data) {
                 return dispatch(eventAction(NEW_MESSAGE_POSTED, payload));
             }
           dispatch(eventAction(NEW_MESSAGE_FAILED));
+      });
+    };
+}
+
+
+export function getPosts() {
+    return dispatch => {
+      dispatch(eventAction(FETCH_POSTS));
+      return get("walls/").then(payload => {
+          dispatch(eventAction(RECEIVE_POSTS, payload));
       });
     };
 }

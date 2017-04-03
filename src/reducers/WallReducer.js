@@ -21,6 +21,12 @@ export function posts(state = initialState, action) {
     case actions.NEW_MESSAGE_FAILED:
       return Object.assign({}, state, {sending_post: false});
 
+    case actions.FETCH_POSTS:
+      return Object.assign({}, state, {requesting_posts: true});
+
+    case actions.RECEIVE_POSTS:
+      return Object.assign({}, state, {requesting_posts: false, posts: action.payload});
+
     default:
       return state
   }
