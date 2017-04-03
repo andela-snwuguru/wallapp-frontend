@@ -2,7 +2,7 @@
  * Created by sundayguru on 01/04/2017.
  */
 
-import {LOGIN_USER, RECEIVE_USER_DATA, LOGOUT_USER, USER_LOGGED_IN} from '../actions/AuthActions'
+import * as actions from '../actions/AuthActions';
 
 let initialState = {
   requesting : false,
@@ -11,13 +11,19 @@ let initialState = {
 
 export function authentication(state = initialState, action) {
   switch (action.type) {
-    case LOGIN_USER:
+    case actions.SIGNUP_USER:
+    case actions.LOGIN_USER:
       return Object.assign({}, state, {requesting: true});
-    case LOGOUT_USER:
+
+    case actions.SIGNUP_USER_SUCCESS:
+    case actions.SIGNUP_USER_FAIL:
+    case actions.LOGOUT_USER:
       return Object.assign({}, state, {requesting: false, user:{}});
-    case USER_LOGGED_IN:
-    case RECEIVE_USER_DATA:
+    
+    case actions.USER_LOGGED_IN:
+    case actions.RECEIVE_USER_DATA:
       return Object.assign({}, state, {requesting: false, user: action.payload});
+
     default:
       return state
   }
