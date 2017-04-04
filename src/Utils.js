@@ -6,7 +6,8 @@ import fetch from 'isomorphic-fetch';
 
 export const Config = {
     domain: "http://localhost:8000/",
-    apiUrl: "http://localhost:8000/api/"
+    apiUrl: "http://localhost:8000/api/",
+    cloudinaryUrl: "https://api.cloudinary.com/v1_1/dfsbzqadc/image/upload"
 };
 
 export function isLogged() {
