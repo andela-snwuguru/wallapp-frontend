@@ -9,7 +9,8 @@ import { createStore, applyMiddleware } from 'redux';
 import { authentication } from './reducers/AuthReducer';
 import { posts } from './reducers/WallReducer';
 import {eventAction} from './Utils';
-import {USER_LOGGED_IN} from './actions/AuthActions';
+import {USER_LOGGED_IN, logoutUser} from './actions/AuthActions';
+import Notifications from 'react-notify-toast';
 
 
 function storeWrapper(state = {}, action) {
@@ -27,8 +28,11 @@ const store = createStore(
 
 class App extends Component {
     componentWillMount(){
-        if(localStorage.getItem("tw_user")){
+        const user = localStorage.getItem("tw_user");
+        if(user !== 'undefined'){
             store.dispatch(eventAction(USER_LOGGED_IN, JSON.parse(localStorage.getItem("tw_user"))));
+        }else{
+            store.dispatch(logoutUser());
         }
     }
 
@@ -36,6 +40,7 @@ class App extends Component {
         return (
             <Provider store={store}>
               <div className="App">
+                <Notifications />
                 <Header />
                 <div className="main-container">
                   <StatusForm />

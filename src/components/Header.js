@@ -4,16 +4,14 @@
 import React, { Component } from 'react';
 import '../App.css';
 import {NavDropdown, MenuItem} from 'react-bootstrap';
-import {isLogged, eventAction} from '../Utils';
-import {LOGOUT_USER} from '../actions/AuthActions';
+import {isLogged} from '../Utils';
+import {logoutUser} from '../actions/AuthActions';
 import { connect } from 'react-redux'
 
 
 class Header extends Component {
     logout(){
-        localStorage.removeItem('tw_token');
-        localStorage.removeItem('tw_user');
-        this.props.dispatch(eventAction(LOGOUT_USER));
+        this.props.dispatch(logoutUser());
     }
     getAccountLink(){
         if(!isLogged())
