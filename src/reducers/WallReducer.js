@@ -16,7 +16,7 @@ export function posts(state = initialState, action) {
       return Object.assign({}, state, {sending_post: true});
 
     case actions.NEW_MESSAGE_POSTED:
-      return Object.assign({}, state, {sending_post: false, posts: state.posts.concat([action.payload])});
+      return Object.assign({}, state, {sending_post: false, posts: [action.payload].concat(state.posts)});
     
     case actions.NEW_MESSAGE_FAILED:
       return Object.assign({}, state, {sending_post: false});

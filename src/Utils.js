@@ -3,10 +3,10 @@
  */
 import fetch from 'isomorphic-fetch';
 
-
+const baseUrl = "https://wallapi.herokuapp.com/";
 export const Config = {
-    domain: "http://localhost:8000/",
-    apiUrl: "http://localhost:8000/api/",
+    domain: baseUrl,
+    apiUrl: baseUrl+"api/",
     cloudinaryUrl: "https://api.cloudinary.com/v1_1/dfsbzqadc/image/upload"
 };
 
