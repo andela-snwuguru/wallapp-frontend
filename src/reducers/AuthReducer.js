@@ -17,6 +17,7 @@ export function authentication(state = initialState, action) {
 
     case actions.SIGNUP_USER_SUCCESS:
     case actions.SIGNUP_USER_FAIL:
+    case actions.LOGIN_FAILED:
     case actions.LOGOUT_USER:
       return Object.assign({}, state, {requesting: false, user:{}});
     
