@@ -2,8 +2,7 @@
  * Created by sundayguru on 03/04/2017.
  */
 
-import {Config, post, get, eventAction} from '../Utils';
-
+import {post, get, eventAction} from '../Utils';
 export const POST_NEW_MESSAGE = "POST_NEW_MESSAGE";
 export const NEW_MESSAGE_POSTED = "NEW_MESSAGE_POSTED";
 export const NEW_MESSAGE_FAILED = "NEW_MESSAGE_FAILED";
@@ -12,6 +11,7 @@ export const RECEIVE_POSTS = "RECEIVE_POSTS";
 
 
 export function postNewMessage(data) {
+    console.log(data)
     return dispatch => {
       dispatch(eventAction(POST_NEW_MESSAGE));
       return post("walls/", data, true).then(payload => {

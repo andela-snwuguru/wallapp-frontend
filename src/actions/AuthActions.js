@@ -2,7 +2,7 @@
  * Created by sundayguru on 01/04/2017.
  */
 
-import {Config, post, eventAction} from '../Utils';
+import {post, eventAction} from '../Utils';
 
 export const LOGIN_USER = "LOGIN_USER";
 export const USER_LOGGED_IN = "USER_LOGGED_IN";
