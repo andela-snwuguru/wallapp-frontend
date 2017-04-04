@@ -4,8 +4,7 @@
 import fetch from 'isomorphic-fetch';
 import {notify} from 'react-notify-toast';
 
-//const baseUrl = "https://wallapi.herokuapp.com/";
-const baseUrl = "http://localhost:8000/";
+const baseUrl = "https://wallapi.herokuapp.com/";
 export const Config = {
     domain: baseUrl,
     apiUrl: baseUrl+"api/"
