@@ -2,7 +2,7 @@
  * Created by sundayguru on 01/04/2017.
  */
 
-import {post, eventAction} from '../Utils';
+import {post, eventAction, info, error, success} from '../Utils';
 
 export const LOGIN_USER = "LOGIN_USER";
 export const USER_LOGGED_IN = "USER_LOGGED_IN";
@@ -20,6 +20,7 @@ export function requestUserLogin(userData) {
             if(payload.token){
                 dispatch(loginUser(payload));
             }else{
+                error("Incorrect user credentials");
                 dispatch(eventAction(LOGIN_FAILED));
             }
       });
@@ -53,6 +54,7 @@ export function loginUser(payload) {
             localStorage.setItem("tw_token", payload.token);
             localStorage.setItem("tw_user", JSON.stringify(payload.user));
         }
+        success("Welcome to the Wall "+ payload.user.username);
         dispatch(eventAction(RECEIVE_USER_DATA, payload.user));
     };
 }

@@ -2,14 +2,29 @@
  * Created by sundayguru on 01/04/2017.
  */
 import fetch from 'isomorphic-fetch';
+import {notify} from 'react-notify-toast';
 
 //const baseUrl = "https://wallapi.herokuapp.com/";
 const baseUrl = "http://localhost:8000/";
 export const Config = {
     domain: baseUrl,
-    apiUrl: baseUrl+"api/",
-    cloudinaryUrl: "https://api.cloudinary.com/v1_1/dfsbzqadc/image/upload"
+    apiUrl: baseUrl+"api/"
 };
+
+export function info(message) {
+    let myColor = { background: '#03a9f4', text: "#FFFFFF" };
+    notify.show(message, "custom", 5000, myColor)
+}
+
+export function success(message) {
+    let myColor = { background: '#009635', text: "#FFFFFF" };
+    notify.show(message, "custom", 5000, myColor)
+}
+
+export function error(message) {
+    let myColor = { background: '#f44336', text: "#FFFFFF" };
+    notify.show(message, "custom", 5000, myColor)
+}
 
 export function isLogged() {
     return localStorage.getItem('tw_token');

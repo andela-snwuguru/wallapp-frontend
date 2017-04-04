@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import {NavDropdown, MenuItem} from 'react-bootstrap';
-import {isLogged, eventAction} from '../Utils';
+import {isLogged} from '../Utils';
 import {logoutUser} from '../actions/AuthActions';
 import { connect } from 'react-redux'
 

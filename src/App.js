@@ -10,6 +10,7 @@ import { authentication } from './reducers/AuthReducer';
 import { posts } from './reducers/WallReducer';
 import {eventAction} from './Utils';
 import {USER_LOGGED_IN, logoutUser} from './actions/AuthActions';
+import Notifications from 'react-notify-toast';
 
 
 function storeWrapper(state = {}, action) {
@@ -39,6 +40,7 @@ class App extends Component {
         return (
             <Provider store={store}>
               <div className="App">
+                <Notifications />
                 <Header />
                 <div className="main-container">
                   <StatusForm />
