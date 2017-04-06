@@ -3,6 +3,10 @@
  */
 import React, { Component, PropTypes } from 'react';
 import {Panel, Grid, Row, Col, Image, Button, Glyphicon, ButtonToolbar, ButtonGroup} from 'react-bootstrap';
+import PostActionButton from './PostActionButton';
+import {isLogged} from '../Utils';
+import { connect } from 'react-redux';
+
 
 class Post extends Component {
     getPostImage(post){
@@ -19,7 +23,7 @@ class Post extends Component {
         return d.toDateString()
     }
   render() {
-      const post = this.props.post;
+      const {post, index} = this.props;
     return (
       <Panel>
         <Grid>
@@ -48,25 +52,8 @@ class Post extends Component {
                     {this.getPostImage(post)}
                 </Col>
             </Row>
-            <hr/>
-            <Row>
-                <Col xs={9} md={9}>
+            { !isLogged() ? "" : <PostActionButton post={post} postIndex={index} />}
 
-                    <ButtonToolbar>
-                      <ButtonGroup bsSize="large">
-                        <Button className="pull-left">
-                            <Glyphicon glyph="thumbs-up" /> Like (12)
-                        </Button>
-                        <Button className="pull-left">
-                            <Glyphicon glyph="comment" /> Comment (23)
-                        </Button>
-                        <Button className="pull-left">
-                            <Glyphicon glyph="share" /> Share (10)
-                        </Button>
-                      </ButtonGroup>
-                    </ButtonToolbar>
-                </Col>
-            </Row>
           </Grid>
       </Panel>
     );
@@ -75,8 +62,15 @@ class Post extends Component {
 
 
 Post.propTypes = {
-  post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired
 };
 
 
-export default Post;
+function mapStateToProps(state) {
+    return {
+      user: state.auth.user
+    };
+}
+
+export default connect(mapStateToProps)(Post);
