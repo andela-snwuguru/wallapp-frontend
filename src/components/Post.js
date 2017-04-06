@@ -4,7 +4,6 @@
 import React, { Component, PropTypes } from 'react';
 import {Panel, Grid, Row, Col, Image, Button, Glyphicon, ButtonToolbar, ButtonGroup} from 'react-bootstrap';
 import PostActionButton from './PostActionButton';
-import Comments from './Comments';
 import {isLogged} from '../Utils';
 import { connect } from 'react-redux';
 
@@ -54,9 +53,7 @@ class Post extends Component {
                 </Col>
             </Row>
             { !isLogged() ? "" : <PostActionButton post={post} postIndex={index} />}
-             <hr/>
-            <Comments />
-            <Comments />
+             
           </Grid>
       </Panel>
     );
