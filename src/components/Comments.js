@@ -4,6 +4,7 @@
 import React, { Component, PropTypes } from 'react';
 import {Panel, Grid, Row, Col, Image, Button, Glyphicon, ButtonToolbar, ButtonGroup} from 'react-bootstrap';
 import { connect } from 'react-redux';
+import {stringifyDate} from '../Utils';
 
 
 class Comments extends Component {
@@ -11,8 +12,9 @@ class Comments extends Component {
     getUserImage(){
         return <Glyphicon glyph="user" style={{fontSize: 55}}/>
     }
-
+    
   render() {
+      const {comment} = this.props;
     return (
       <Col xs={9}>
         <Panel>
@@ -23,17 +25,17 @@ class Comments extends Component {
               </Col>
               <Col xs={8} md={8}>
                   <Row>
-                    <p className="pull-left">{"sunday"}</p>
+                    <p className="pull-left">{comment.user.username}</p>
                   </Row>
                   <Row>
-                    <p className="pull-left grey">{"12/12/12"}</p>
+                    <p className="pull-left grey">{stringifyDate(comment.date_created)}</p>
                   </Row>
               </Col>
             </Row>
             <Row>
                 <Col xs={9} md={9}>
                     <p className="userContent">
-                        {"message"}
+                        {comment.message}
                     </p>
                 </Col>
             </Row>
@@ -44,6 +46,10 @@ class Comments extends Component {
   }
 }
 
+
+Comments.propTypes = {
+  comment: PropTypes.object.isRequired,
+};
 
 
 export default connect()(Comments);

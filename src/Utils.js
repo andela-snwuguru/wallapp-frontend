@@ -65,3 +65,8 @@ export function eventAction(event_type, payload) {
         payload
     }
 }
+
+export function stringifyDate(datetime) {
+    const d = new Date(datetime);
+    return d.toDateString()
+}

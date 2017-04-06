@@ -26,7 +26,6 @@ class PostActionButton extends Component {
       <Row>
           <hr/>
         <Col xs={9} md={9}>
-
             <ButtonToolbar>
               <ButtonGroup bsSize="large">
                 <Button className="pull-left" onClick={this.handleLikeClick}>
@@ -42,7 +41,7 @@ class PostActionButton extends Component {
             </ButtonToolbar>
             <div style={{display: this.state.showForm ? "block": "none" }}>
             <hr/>
-                {this.props.post.comments.map((comment)=>{ return <Comments key={comment.id} />})}
+                {this.props.post.comments.map((comment)=>{ return <Comments key={comment.id} comment={comment} />})}
                 {this.props.post.comments.length ? "" : <p style={{textAlign:"left", paddingLeft:"15px"}}>Be the first to say something</p>}
 
             <br/>
