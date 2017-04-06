@@ -4,6 +4,7 @@
 
 import {post, get, eventAction, error, success} from '../Utils';
 export const POST_NEW_MESSAGE = "POST_NEW_MESSAGE";
+export const NEW_LIKE_POSTED = "NEW_LIKE_POSTED";
 export const NEW_MESSAGE_POSTED = "NEW_MESSAGE_POSTED";
 export const NEW_MESSAGE_FAILED = "NEW_MESSAGE_FAILED";
 export const FETCH_POSTS = "FETCH_POSTS";
@@ -20,6 +21,17 @@ export function postNewMessage(data) {
             }
           error("Unable to post message :(");
           dispatch(eventAction(NEW_MESSAGE_FAILED));
+      });
+    };
+}
+
+
+export function newPostLike(post) {
+    return dispatch => {
+      return post("walls/"+post.id+"/likes/", {}, true).then(payload => {
+            if (payload.id) {
+                return dispatch(eventAction(NEW_LIKE_POSTED, payload));
+            }
       });
     };
 }

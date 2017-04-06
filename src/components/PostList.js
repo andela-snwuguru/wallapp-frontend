@@ -15,7 +15,7 @@ class PostList extends Component {
   render() {
     return (
         <Loader show={this.props.requesting_posts} message={'Loading...'}>
-            {this.props.posts.map((post)=>{ return <Post post={post} key={post.id}/>})}
+            {this.props.posts.map((post)=>{ return <Post post={post} key={post.id} />})}
         </Loader>
     );
   }

@@ -3,6 +3,8 @@
  */
 import React, { Component, PropTypes } from 'react';
 import {Panel, Grid, Row, Col, Image, Button, Glyphicon, ButtonToolbar, ButtonGroup} from 'react-bootstrap';
+import PostActionButton from './PostActionButton';
+
 
 class Post extends Component {
     getPostImage(post){
@@ -49,24 +51,7 @@ class Post extends Component {
                 </Col>
             </Row>
             <hr/>
-            <Row>
-                <Col xs={9} md={9}>
-
-                    <ButtonToolbar>
-                      <ButtonGroup bsSize="large">
-                        <Button className="pull-left">
-                            <Glyphicon glyph="thumbs-up" /> Like (12)
-                        </Button>
-                        <Button className="pull-left">
-                            <Glyphicon glyph="comment" /> Comment (23)
-                        </Button>
-                        <Button className="pull-left">
-                            <Glyphicon glyph="share" /> Share (10)
-                        </Button>
-                      </ButtonGroup>
-                    </ButtonToolbar>
-                </Col>
-            </Row>
+            <PostActionButton post={post} />
           </Grid>
       </Panel>
     );
