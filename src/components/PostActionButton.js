@@ -4,7 +4,7 @@
 import React, { Component, PropTypes } from 'react';
 import {Row, Col, Button, Glyphicon, ButtonToolbar, ButtonGroup} from 'react-bootstrap';
 import { connect } from 'react-redux';
-import {logoutUser} from '../actions/AuthActions';
+import {newPostLike} from '../actions/WallActions';
 
 
 class PostActionButton extends Component {
@@ -14,19 +14,19 @@ class PostActionButton extends Component {
     }
     
     handleLikeClick(){
-        this.props.dispatch(logoutUser());
+        this.props.dispatch(newPostLike(this.props.post, this.props.postIndex));
     }
 
   render() {
-      console.log(this.props.store);
     return (
       <Row>
+          <hr/>
         <Col xs={9} md={9}>
 
             <ButtonToolbar>
               <ButtonGroup bsSize="large">
                 <Button className="pull-left" onClick={this.handleLikeClick}>
-                    <Glyphicon glyph="thumbs-up" /> Like (12)
+                    <Glyphicon glyph="thumbs-up" /> Like ({this.props.post.likes.length})
                 </Button>
                 <Button className="pull-left">
                     <Glyphicon glyph="comment" /> Comment (23)
@@ -45,9 +45,18 @@ class PostActionButton extends Component {
 
 PostActionButton.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    post: PropTypes.object.isRequired
+    post: PropTypes.object.isRequired,
+    postIndex: PropTypes.number.isRequired,
+    sending_like: PropTypes.bool.isRequired
 };
 
 
-export default connect()(PostActionButton);
+function mapStateToProps(state) {
+    return {
+      sending_like: state.wall.sending_like
+    };
+}
+
+
+export default connect(mapStateToProps)(PostActionButton);
 

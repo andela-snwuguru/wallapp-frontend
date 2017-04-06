@@ -4,6 +4,8 @@
 import React, { Component, PropTypes } from 'react';
 import {Panel, Grid, Row, Col, Image, Button, Glyphicon, ButtonToolbar, ButtonGroup} from 'react-bootstrap';
 import PostActionButton from './PostActionButton';
+import {isLogged} from '../Utils';
+import { connect } from 'react-redux';
 
 
 class Post extends Component {
@@ -21,7 +23,7 @@ class Post extends Component {
         return d.toDateString()
     }
   render() {
-      const post = this.props.post;
+      const {post, index} = this.props;
     return (
       <Panel>
         <Grid>
@@ -50,8 +52,8 @@ class Post extends Component {
                     {this.getPostImage(post)}
                 </Col>
             </Row>
-            <hr/>
-            <PostActionButton post={post} />
+            { !isLogged() ? "" : <PostActionButton post={post} postIndex={index} />}
+
           </Grid>
       </Panel>
     );
@@ -60,8 +62,15 @@ class Post extends Component {
 
 
 Post.propTypes = {
-  post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired
 };
 
 
-export default Post;
+function mapStateToProps(state) {
+    return {
+      user: state.auth.user
+    };
+}
+
+export default connect(mapStateToProps)(Post);
