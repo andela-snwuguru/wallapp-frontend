@@ -4,7 +4,7 @@
 import React, { Component, PropTypes } from 'react';
 import {Row, Col, Button, Glyphicon, ButtonToolbar, ButtonGroup, Form, FormGroup, FormControl} from 'react-bootstrap';
 import { connect } from 'react-redux';
-import {newPostLike} from '../actions/WallActions';
+import {newPostComment, newPostLike} from '../actions/WallActions';
 import Comments from './Comments';
 
 
@@ -12,13 +12,21 @@ class PostActionButton extends Component {
     constructor(){
         super();
         this.handleLikeClick = this.handleLikeClick.bind(this);
+        this.handleCommentSubmit = this.handleCommentSubmit.bind(this);
         this.state = {
-            showForm: false
+            showForm: false,
+            message: ""
         }
     }
     
-    handleLikeClick(){
+    handleLikeClick(e){
         this.props.dispatch(newPostLike(this.props.post, this.props.postIndex));
+    }
+
+    handleCommentSubmit(e){
+        e.preventDefault();
+        this.props.dispatch(newPostComment(this.props.post, this.props.postIndex, this.state.message));
+        this.setState({message:""});
     }
 
   render() {
@@ -46,9 +54,9 @@ class PostActionButton extends Component {
 
             <br/>
             <Col xs={9} md={9}>
-                <Form onSubmit="" >
+                <Form onSubmit={this.handleCommentSubmit}>
                     <FormGroup>
-                      <FormControl componentClass="textarea" required value={""} onChange={(e)=>{ this.setState({message: e.target.value}) }}/>
+                      <FormControl componentClass="textarea" required value={this.state.message} onChange={(e)=>{ this.setState({message: e.target.value}) }}/>
                     </FormGroup>
 
                     <Button type="submit" bsStyle="primary" className="pull-right">comment</Button>
