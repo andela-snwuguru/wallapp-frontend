@@ -4,7 +4,7 @@
 import fetch from 'isomorphic-fetch';
 import {notify} from 'react-notify-toast';
 
- const baseUrl = "https://wallapi.herokuapp.com/";
+const baseUrl = "https://wallapi.herokuapp.com/";
 //const baseUrl = "http://localhost:8000/";
 export const Config = {
     domain: baseUrl,
@@ -64,4 +64,9 @@ export function eventAction(event_type, payload) {
       type: event_type,
         payload
     }
+}
+
+export function stringifyDate(datetime) {
+    const d = new Date(datetime);
+    return d.toDateString()
 }

@@ -6,6 +6,7 @@ import {Panel, Grid, Row, Col, Image, Button, Glyphicon, ButtonToolbar, ButtonGr
 import PostActionButton from './PostActionButton';
 import {isLogged} from '../Utils';
 import { connect } from 'react-redux';
+import {stringifyDate} from '../Utils';
 
 
 class Post extends Component {
@@ -18,10 +19,6 @@ class Post extends Component {
         return <Glyphicon glyph="user" style={{fontSize: 55}}/>
     }
 
-    getDate(post){
-        const d = new Date(post.date_created);
-        return d.toDateString()
-    }
   render() {
       const {post, index} = this.props;
     return (
@@ -36,7 +33,7 @@ class Post extends Component {
                     <p className="pull-left">{post.user.username}</p>
                   </Row>
                   <Row>
-                    <p className="pull-left grey">{this.getDate(post)}</p>
+                    <p className="pull-left grey">{stringifyDate(post.date_created)}</p>
                   </Row>
               </Col>
             </Row>
@@ -53,7 +50,7 @@ class Post extends Component {
                 </Col>
             </Row>
             { !isLogged() ? "" : <PostActionButton post={post} postIndex={index} />}
-
+             
           </Grid>
       </Panel>
     );

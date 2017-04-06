@@ -5,7 +5,9 @@
 import {post, get, eventAction, error, success} from '../Utils';
 export const POST_NEW_MESSAGE = "POST_NEW_MESSAGE";
 export const POST_NEW_LIKE = "POST_NEW_LIKE";
+export const POST_NEW_COMMENT = "POST_NEW_COMMENT";
 export const NEW_LIKE_POSTED = "NEW_LIKE_POSTED";
+export const NEW_COMMENT_POSTED = "NEW_COMMENT_POSTED";
 export const NEW_MESSAGE_POSTED = "NEW_MESSAGE_POSTED";
 export const NEW_MESSAGE_FAILED = "NEW_MESSAGE_FAILED";
 export const FETCH_POSTS = "FETCH_POSTS";
@@ -34,7 +36,25 @@ export function newPostLike(postData, postIndex) {
             if (payload.id) {
                 payload.postIndex = postIndex;
                 return dispatch(eventAction(NEW_LIKE_POSTED, payload));
+            }else{
+                if(payload.error){
+                    error("You've liked this post");
+                }
             }
+      });
+    };
+}
+
+export function newPostComment(postData, postIndex, message) {
+    return dispatch => {
+        dispatch(eventAction(POST_NEW_COMMENT));
+      return post("walls/"+postData.id+"/comments/", {message: message}, true).then(payload => {
+            if (payload.id) {
+                payload.postIndex = postIndex;
+                success("Comment sent!");
+                return dispatch(eventAction(NEW_COMMENT_POSTED, payload));
+            }
+            error("Something went wrong");
       });
     };
 }

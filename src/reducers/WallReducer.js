@@ -7,7 +7,7 @@ import * as actions from '../actions/WallActions';
 let initialState = {
   requesting_posts : false,
   sending_post : false,
-  sending_like : false,
+  sending_button_action : false,
   posts : []
 };
 
@@ -17,7 +17,8 @@ export function posts(state = initialState, action) {
       return Object.assign({}, state, {sending_post: true});
     
     case actions.POST_NEW_LIKE:
-      return Object.assign({}, state, {sending_like: true});
+    case actions.POST_NEW_COMMENT:
+      return Object.assign({}, state, {sending_button_action: true});
 
     case actions.NEW_MESSAGE_POSTED:
       return Object.assign({}, state, {sending_post: false, posts: [action.payload].concat(state.posts)});
@@ -33,7 +34,11 @@ export function posts(state = initialState, action) {
 
     case actions.NEW_LIKE_POSTED:
         state.posts[action.payload.postIndex].likes.push(action.payload);
-      return Object.assign({}, state, {sending_like: false});
+      return Object.assign({}, state, {sending_button_action: false});
+
+    case actions.NEW_COMMENT_POSTED:
+        state.posts[action.payload.postIndex].comments.push(action.payload);
+      return Object.assign({}, state, {sending_button_action: false});
 
     default:
       return state
