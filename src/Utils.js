@@ -12,18 +12,33 @@ export const Config = {
 };
 
 export function info(message) {
-    let myColor = { background: '#03a9f4', text: "#FFFFFF" };
-    notify.show(message, "custom", 5000, myColor)
+    try{
+        let myColor = { background: '#03a9f4', text: "#FFFFFF" };
+        notify.show(message, "custom", 5000, myColor)
+    }catch(e){
+
+    }
+
 }
 
 export function success(message) {
-    let myColor = { background: '#009635', text: "#FFFFFF" };
-    notify.show(message, "custom", 5000, myColor)
+    try{
+        let myColor = { background: '#009635', text: "#FFFFFF" };
+        notify.show(message, "custom", 5000, myColor)
+    }catch(e){
+
+    }
+
 }
 
 export function error(message) {
-    let myColor = { background: '#f44336', text: "#FFFFFF" };
-    notify.show(message, "custom", 5000, myColor)
+    try {
+        let myColor = { background: '#f44336', text: "#FFFFFF" };
+        notify.show(message, "custom", 5000, myColor)
+    }catch(e){
+
+    }
+
 }
 
 export function isLogged() {

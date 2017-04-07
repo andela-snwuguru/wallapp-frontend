@@ -2,7 +2,7 @@
  * Created by sundayguru on 01/04/2017.
  */
 import React, { Component, PropTypes } from 'react';
-import {Panel, Grid, Row, Col, Image, Button, Glyphicon, ButtonToolbar, ButtonGroup} from 'react-bootstrap';
+import {Panel, Grid, Row, Col, Image, Glyphicon} from 'react-bootstrap';
 import PostActionButton from './PostActionButton';
 import {isLogged} from '../Utils';
 import { connect } from 'react-redux';

@@ -20,10 +20,11 @@ describe('User authentications', () => {
 
   it('requestUserLogin creates RECEIVE_USER_DATA after success login', () => {
       const mock_response = {
-          "user":{
-              "username":"tester","email":"test@test.com",
-              "is_active":true,"first_name":"tester",
-              "last_name":"tester"
+          token: "xyz",
+          user:{
+              id: 1,
+              username: "tester",
+              email: "test@test.com"
           }
       };
     nock(Config.domain)
@@ -44,10 +45,11 @@ describe('User authentications', () => {
 
   it('requestUserRegister creates SIGNUP_USER_SUCCESS, RECEIVE_USER_DATA after success signup', () => {
       const mock_response = {
-          "user":{
-              "id": 1, "username":"tester", "email":"test@test.com",
-              "is_active":true, "first_name":"tester",
-              "last_name":"tester"
+          token: "xyz",
+          user:{
+              id: 1,
+              username: "tester",
+              email: "test@test.com"
           }
       };
     nock(Config.domain)

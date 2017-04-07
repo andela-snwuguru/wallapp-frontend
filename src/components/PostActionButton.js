@@ -13,6 +13,7 @@ class PostActionButton extends Component {
         super();
         this.handleLikeClick = this.handleLikeClick.bind(this);
         this.handleCommentSubmit = this.handleCommentSubmit.bind(this);
+        this.handleShareClick = this.handleShareClick.bind(this);
         this.state = {
             showForm: false,
             message: ""
@@ -21,6 +22,11 @@ class PostActionButton extends Component {
     
     handleLikeClick(e){
         this.props.dispatch(newPostLike(this.props.post, this.props.postIndex));
+    }
+
+    handleShareClick(e){
+        const post = this.props.post.message;
+        document.location.href = "https://twitter.com/intent/tweet?text=" + post;
     }
 
     handleCommentSubmit(e){
@@ -32,7 +38,7 @@ class PostActionButton extends Component {
   render() {
     return (
       <Row>
-          <hr/>
+        <hr/>
         <Col xs={9} md={9}>
             <ButtonToolbar>
               <ButtonGroup bsSize="large">
@@ -42,8 +48,8 @@ class PostActionButton extends Component {
                 <Button className="pull-left" onClick={()=>{ this.setState({showForm: this.state.showForm ? false : true })  }}>
                     <Glyphicon glyph="comment" /> Comment ({this.props.post.comments.length})
                 </Button>
-                <Button className="pull-left">
-                    <Glyphicon glyph="share" /> Share (10)
+                <Button className="pull-left"  onClick={this.handleShareClick}>
+                    <Glyphicon glyph="share" /> Share
                 </Button>
               </ButtonGroup>
             </ButtonToolbar>

@@ -20,8 +20,8 @@ describe('Wall Posts', () => {
 
   it('postNewMessage creates NEW_MESSAGE_POSTED after success post', () => {
       const mock_response = {
-          "id": 1,
-          "message": "test"
+          id: 1,
+          message: "test"
       };
     nock(Config.domain)
       .post('/api/walls/')
@@ -41,8 +41,8 @@ describe('Wall Posts', () => {
 
   it('getPosts creates RECEIVE_POSTS after successful post fetch', () => {
       const mock_response = [{
-          "id": 1,
-          "message": "test"
+          id: 1,
+          message: "test"
       }];
     nock(Config.domain)
       .get('/api/walls/')
@@ -56,6 +56,51 @@ describe('Wall Posts', () => {
 
     return store.dispatch(actions.getPosts())
       .then(() => { 
+        expect(store.getActions()).toEqual(expectedActions);
+      })
+  });
+
+  it('newPostLike creates NEW_LIKE_POSTED after success', () => {
+      const mock_response = {
+          id: 1,
+          postIndex: 0,
+          user: {username: "test"}
+      };
+    nock(Config.domain)
+      .post('/api/walls/1/likes/')
+      .reply(200, mock_response);
+
+    const expectedActions = [
+      { type: actions.POST_NEW_LIKE,  payload: undefined },
+      { type: actions.NEW_LIKE_POSTED, payload: mock_response }
+    ];
+    const store = mockStore({ posts: {}, sending_button_action: false });
+
+    return store.dispatch(actions.newPostLike({id: 1}, 0))
+      .then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      })
+  });
+    
+  it('newPostComment creates NEW_COMMENT_POSTED after success', () => {
+      const mock_response = {
+          id: 1,
+          postIndex: 0,
+          message: "test",
+          user: {username: "test"}
+      };
+    nock(Config.domain)
+      .post('/api/walls/1/comments/')
+      .reply(200, mock_response);
+
+    const expectedActions = [
+      { type: actions.POST_NEW_COMMENT,  payload: undefined },
+      { type: actions.NEW_COMMENT_POSTED, payload: mock_response }
+    ];
+    const store = mockStore({ posts: {}, sending_button_action: false });
+
+    return store.dispatch(actions.newPostComment({id: 1}, 0))
+      .then(() => {
         expect(store.getActions()).toEqual(expectedActions);
       })
   });
