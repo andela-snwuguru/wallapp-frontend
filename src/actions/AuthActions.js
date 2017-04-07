@@ -54,7 +54,7 @@ export function loginUser(payload) {
             localStorage.setItem("tw_token", payload.token);
             localStorage.setItem("tw_user", JSON.stringify(payload.user));
         }
-        success("Welcome to the Wall "+ payload.user.username);
+        success("Welcome to the Wall " + payload.user.username);
         dispatch(eventAction(RECEIVE_USER_DATA, payload.user));
     };
 }

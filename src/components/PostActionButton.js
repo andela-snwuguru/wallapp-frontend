@@ -38,7 +38,7 @@ class PostActionButton extends Component {
   render() {
     return (
       <Row>
-          <hr/>
+        <hr/>
         <Col xs={9} md={9}>
             <ButtonToolbar>
               <ButtonGroup bsSize="large">

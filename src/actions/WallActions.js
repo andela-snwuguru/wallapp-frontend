@@ -32,6 +32,8 @@ export function postNewMessage(data) {
 export function newPostLike(postData, postIndex) {
     return dispatch => {
         dispatch(eventAction(POST_NEW_LIKE));
+            console.log("walls/"+postData.id+"/likes/");
+
       return post("walls/"+postData.id+"/likes/", {}, true).then(payload => {
             if (payload.id) {
                 payload.postIndex = postIndex;
